@@ -42,3 +42,16 @@ def pages(request):
     except:
         html_template = loader.get_template('home/page-500.html')
         return HttpResponse(html_template.render(context, request))
+
+# Minhas classes
+
+from django_filters.views import FilterView
+from .models import Imoveis
+from .filters import ImoveisFilter
+
+# classe utilizada para listar e pesquisar os dados
+class ImoveisFilter(FilterView):
+    model = Imoveis
+    template_name = 'home/pesquisa_imoveis.html'
+    filterset_class = ImoveisFilter  # Usando o FilterSet que criamos
+    context_object_name = 'imoveis'

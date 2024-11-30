@@ -1,0 +1,118 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="title">Atributos de Pesquisas</h4>
+          </div>
+          <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-6 pr-md-1">
+                      <div class="form-group">
+                        <label>Proprietário</label>
+                        <input type="text" class="form-control" placeholder="Proprietário" value="">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pl-md-1">
+                      <div class="form-group">
+                        <label>Parcelamento</label>
+                        <input type="text" class="form-control" placeholder="Parcelamento" value="">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pl-md-1">
+                        <div class="form-group">
+                          <label>Patrimônio</label>
+                          <input type="text" class="form-control" placeholder="Patrimônio" value="">
+                        </div>
+                      </div>
+                  </div>
+              
+               <div class="row pt-3">
+                <div class="col-md-4 pr-md-1">
+                  <div class="form-group">
+                    <label>Inscrição Imobiliária</label>
+                    <input type="text" class="form-control" placeholder="Digite os 11 dígitos." maxlength="11" minlength="11" autofocus 
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+                    value="{% if mensagem == 'Inscrição Imobiliária não encontrada!!'%}{{ limpa_inscricao }}{% else %}{{ inscricao }}{% endif %}">
+                  </div>
+                </div>
+                <div class="col-md-4 px-md-1">
+                  <div class="form-group">
+                    <label>Codlote</label>
+                    <input type="text" class="form-control" placeholder="Digite os 11 dígitos." value="" maxlength="11" minlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                  </div>
+                </div>
+                <div class="col-md-4 pl-md-1">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Uso do imóvel</label>
+                    <input type="text" class="form-control" placeholder="Seleciona o uso do imóvel">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row pt-3">
+                <div class="col-md-6 pr-md-1">
+                  <div class="form-group">
+                    <label>Taxação</label>
+                    <input type="text" class="form-control" placeholder="TAXACAO" value="">
+                  </div>
+                </div>
+                <div class="col-md-3 pl-md-1">
+                  <div class="form-group">
+                    <label>Descrição T</label>
+                    <input type="text" class="form-control" placeholder="Descrição" value="">
+                  </div>
+                </div>
+                <div class="col-md-3 pl-md-1">
+                    <div class="form-group">
+                      <label>Setor Cálculo</label>
+                      <input type="text" class="form-control" placeholder="SETORCALCU" value="">
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-fill btn-dark">Consultar</button>
+                  </div>
+              </div>
+              
+            </form>
+            <h4 class="title">Resultado da Pesquisa</h4>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+{% endblock %}
