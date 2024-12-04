@@ -6,110 +6,186 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="title">Atributos de Pesquisas</h4>
+            <h3 class="title">FILTROS</h3>
           </div>
           <div class="card-body">
-            <form>
-                <div class="row">
-                    <div class="col-md-6 pr-md-1">
+            <form method="post" action="{% url 'pesquisar_dados' %}">
+              {% csrf_token %}
+              <div class="row">
+                  <div class="col-md-6 pr-md-1">
                       <div class="form-group">
-                        <label>Proprietário</label>
-                        <input type="text" class="form-control" placeholder="Proprietário" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-3 pl-md-1">
-                      <div class="form-group">
-                        <label>Parcelamento</label>
-                        <input type="text" class="form-control" placeholder="Parcelamento" value="">
-                      </div>
-                    </div>
-                    <div class="col-md-3 pl-md-1">
-                        <div class="form-group">
-                          <label>Patrimônio</label>
-                          <input type="text" class="form-control" placeholder="Patrimônio" value="">
-                        </div>
+                          <label>Proprietário</label>
+                          <input type="text" name="proprietario" class="form-control mb-0 pb-0" placeholder="Proprietário">
                       </div>
                   </div>
+                  <div class="col-md-3 pl-md-1">
+                      <div class="form-group">
+                          <label>Parcelamento</label>
+                          <input type="text" name="parcelamento" class="form-control" placeholder="Parcelamento">
+                      </div>
+                  </div>
+                  <div class="col-md-3 pl-md-1">
+                      <div class="form-group">
+                        <label for="exampleDataList" class="form-label">Patrimônio</label>
+                        <input class="form-control" name="patrimonio" list="datalistPatrimonio" placeholder="Selecione">
+                        <datalist id="datalistPatrimonio">
+                            <option value="PARTICULAR">
+                            <option value="ENTIDADES">
+                            <option value="PUBLICO">
+                            <option value="RELIGIOSO">
+                        </datalist>
+                    </div>
+                  </div>
+              </div>
               
-               <div class="row pt-3">
-                <div class="col-md-4 pr-md-1">
-                  <div class="form-group">
-                    <label>Inscrição Imobiliária</label>
-                    <input type="text" class="form-control" placeholder="Digite os 11 dígitos." maxlength="11" minlength="11" autofocus 
-                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
-                    value="{% if mensagem == 'Inscrição Imobiliária não encontrada!!'%}{{ limpa_inscricao }}{% else %}{{ inscricao }}{% endif %}">
+              <!-- Adicione outros campos conforme necessário -->
+              <div class="row pt-3">
+                  <div class="col-md-4 pr-md-1">
+                      <div class="form-group">
+                          <label>Inscrição Imobiliária</label>
+                          <input  type="text" name="inscricao" class="form-control" placeholder="Digite os 11 dígitos." maxlength="11">
+                      </div>
                   </div>
+                  <div class="col-md-4 px-md-1">
+                      <div class="form-group">
+                          <label>Codlote</label>
+                          <input type="text" name="codelote" class="form-control" placeholder="Digite os 11 dígitos." maxlength="11">
+                      </div>
+                  </div>
+                  <div class="col-md-4 pl-md-1">
+                      <div class="form-group">
+                        <label for="exampleDataList" class="form-label">Uso do imóvel</label>
+                        <input class="form-control" name="uso_imovel" list="datalist_uso_imovel" placeholder="Selecione">
+                        <datalist id="datalist_uso_imovel">
+                            <option value="RESIDENCIAL">
+                            <option value="TERRITORIAL">
+                            <option value="FINALID ESSENCIAIS">
+                            <option value="COMERCIAL">
+                            <option value="SERVICOS">
+                            <option value="INDUSTRIAL">
+                            <option value="MISTO">
+                            <option value="RELIGIOSO">
+                            <option value="MCMV (SUSPENSO SUB JUDICE)">
+                            <option value="PUBLICO">
+                            <option value="RURAL AGROPECUARIO PRED">
+                            <option value="RURAL TERRITORIAL">
+                            <option value="RURAL SERV/COMERCIO">
+                            <option value="RURAL SITIO RECREIO TERR">
+                            <option value="RURAL INDUSTRIAL">
+                            <option value="RURAL AGROPECUARIO TERR">
+                            <option value="RURAL SITIO RECREIO PRED">
+                            <option value="RURAL FIN. ESSENCIAIS">
+                            <option value="MINHA CASA MINHA VIDA">
+                        </datalist> 
+                        </div>
+                    </div>
+              </div>
+              <div class="row pt-3">
+                <div class="col-md-4 pr-md-1">
+                    <div class="form-group">
+                        <label for="exampleDataList" class="form-label">Taxação</label>
+                        <input class="form-control" name="taxacao" list="datalistTaxacao" placeholder="Selecione">
+                        <datalist id="datalistTaxacao">
+                            <option value="ATIVADA">
+                            <option value="INIB CONTA">
+                            <option value="IMUNE">
+                            <option value="ISENTO">
+                        </datalist>
+                    </div>
                 </div>
                 <div class="col-md-4 px-md-1">
-                  <div class="form-group">
-                    <label>Codlote</label>
-                    <input type="text" class="form-control" placeholder="Digite os 11 dígitos." value="" maxlength="11" minlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-                  </div>
+                    <div class="form-group">
+                        <label for="exampleDataList" class="form-label">Descrição T</label>
+                        <input class="form-control" size="5" name="descricao" list="datalist_DescricaoT" placeholder="Selecione">
+                        <datalist id="datalist_DescricaoT">
+                            <option value="null">
+                            <option value="NORMAL">
+                            <option value="RURAL">
+                            <option value="AUTARQUIA">
+                            <option value="RELIGIOSO">
+                            <option value="RELIGIOSO-FE">
+                            <option value="IGREJA">
+                            <option value="PUB ESTADUAL">
+                            <option value="PUB FEDERAL">
+                            <option value="PUB MUNICIPAL">
+                            <option value="SIST ANTERIOR">
+                            <option value="FEDERACAO">
+                            <option value="SINDICATO TRAB">
+                            <option value="APOSENTADO">
+                            <option value="APOSENTADO/PENS">
+                            <option value="ASSIST SOC-FE">
+                            <option value="ASSIST SOCIAL">
+                            <option value="ASSOCIACAO">
+                            <option value="ASSOCIACAO-FE">
+                            <option value="CLUBE SOCIAL">
+                            <option value="CONSELHO">
+                            <option value="CONSELHO-FE">
+                            <option value="CRECHE">
+                            <option value="ENTIDADE SOCIAL">
+                            <option value="ESCOLA">
+                            <option value="EXPEDICIONARIO">
+                            <option value="FUNDACAO">
+                            <option value="HIST/CULT/ECOL">
+                            <option value="INSTIT CEPC">
+                            <option value="ITR">
+                            <option value="MACONARIA">
+                            <option value="PARTIDO POLIT">
+                        </datalist>                        
+                    </div>
                 </div>
                 <div class="col-md-4 pl-md-1">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Uso do imóvel</label>
-                    <input type="text" class="form-control" placeholder="Seleciona o uso do imóvel">
-                  </div>
-                </div>
-              </div>
-              
-              <div class="row pt-3">
-                <div class="col-md-6 pr-md-1">
-                  <div class="form-group">
-                    <label>Taxação</label>
-                    <input type="text" class="form-control" placeholder="TAXACAO" value="">
-                  </div>
-                </div>
-                <div class="col-md-3 pl-md-1">
-                  <div class="form-group">
-                    <label>Descrição T</label>
-                    <input type="text" class="form-control" placeholder="Descrição" value="">
-                  </div>
-                </div>
-                <div class="col-md-3 pl-md-1">
                     <div class="form-group">
-                      <label>Setor Cálculo</label>
-                      <input type="text" class="form-control" placeholder="SETORCALCU" value="">
+                        <label>Setor Cálculo</label>
+                        <input type="text" name="setor_calculo" class="form-control">
                     </div>
-                  </div>
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-fill btn-dark">Consultar</button>
-                  </div>
-              </div>
-              
-            </form>
-            <h4 class="title">Resultado da Pesquisa</h4>
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
+                </div>
+            </div>
+              <button type="submit" class="btn btn-fill btn-dark">Consultar</button>
+          </form>          
+          <div class="row">
+            <div class="col-lg-2">
+                <label class="pt-5" for="pesquisa">Quantidade de dados filtrados:</label>
+                <input readonly id="pesquisa" class="form-control w-25 text-warning"  type="text" value="{{contador_filtro}}">
+                    <small>OBS: Nº máximo 20.000</small>
+            </div>
           </div>
+                    
+          <h4 class="title pt-5">RESULTADO DA PESQUISA</h4>          
+
+          <table class="table">
+            <thead>
+                <tr>
+                    <!-- Parte 1: Primeiras 8 colunas -->
+                    <th scope="col"></th>
+                    <th scope="col">Inscrição</th>
+                    <th scope="col">Proprietário</th>
+                    <th scope="col">Parcelamento</th>
+                    <th scope="col">Patrimônio</th>
+                    <th scope="col">Uso do imóvel</th>
+                    <th scope="col">Codelote</th>
+                    <th scope="col">Regiao</th>
+                    <th scope="col">Bairro</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for imovel in imoveis %}
+                <tr>
+                    <!-- Parte 1: Primeiras 8 colunas -->
+                    <td><a class="btn btn-light" href="{% url 'mais_dados_filtrados' imovel.pk %}">VER</a></td>
+                    <td>{{ imovel.inscant }}</td>
+                    <td>{{ imovel.proprietar }}</td>
+                    <td>{{ imovel.parcelamen }}</td>
+                    <td>{{ imovel.patrimonio }}</td>
+                    <td>{{ imovel.usoimovel }}</td>
+                    <td>{{ imovel.codelote }}</td>
+                    <td>{{ imovel.nomeregiao }}</td>
+                    <td>{{ imovel.nomebairro }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
         </div>
       </div>
       

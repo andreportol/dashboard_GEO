@@ -1,0 +1,43 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="title">CONTINUAÇÃO</h3>
+          </div>
+          <div class="card-body">         
+            <h4 class="title pt-5">RESULTADO DA PESQUISA</h4>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Valor Venal</th>
+                        <th scope="col">Valor Construção</th>
+                        <th scope="col">Avaliação</th>
+                        <th scope="col">Alíquota</th>
+                        <th scope="col">Fração Ideal</th>
+                        <th scope="col">Valor Terreno</th>
+                        <th scope="col">Valor Edificação</th>
+                        <th scope="col">Valor Total</th>
+                        <th scope="col"> Valor IPTU</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ imovel.valorvenal }}</td>
+                        <td>{{ imovel.valorconst }}</td>
+                        <td>{{ imovel.avaliacao }}</td>
+                        <td>{{ imovel.aliquota }}</td>
+                        <td>{{ imovel.fracaoidea }}</td>
+                        <td>{{ imovel.valorterrenolote }}</td>
+                        <td>{{ imovel.valoredificlote }}</td>
+                        <td>{{ imovel.valortotallote }}</td> 
+                        <td>{{ imovel.valor_iptu_estimado }}</td>                       
+                    </tr>                    
+                </tbody>
+                <td><a class="btn btn-light text-white" href="{% url 'pesquisar_dados' %}">VOLTAR</a></td>
+            </table>
+{% endblock %}
